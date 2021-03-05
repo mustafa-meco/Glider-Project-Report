@@ -1,0 +1,629 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Glider Project Report</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="acfc0fe9-c8ae-4cde-85a6-36902ad63165" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">✈️</span></div><h1 class="page-title">Glider Project Report</h1><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M6.98643729,14.0000972 C5.19579566,14.0000972 3.40419152,13.3106896 2.04245843,11.9323606 C-0.681017475,9.21200555 -0.680780251,4.76029539 2.04293482,2.04012507 C4.76664406,-0.68004331 9.22427509,-0.68004331 11.9480135,2.04013479 C13.272481,3.36277455 14,5.1330091 14,6.99552762 C14,8.87640182 13.2721894,10.6285043 11.9480135,11.9509302 C10.5679344,13.3105924 8.77756503,14.0000972 6.98643729,14.0000972 Z M10.2705296,7.00913883 L10.2705296,8.46099754 L10.2705296,8.65543362 L10.076181,8.65543362 L8.6543739,8.65543362 L5.72059514,8.65543362 L5.52619796,8.65543362 L5.52619796,8.46099754 L5.52619796,5.52541044 L5.52619796,3.37946773 L5.52619796,3.18502193 L5.72059514,3.18502193 L7.17253164,3.18502193 L7.36692883,3.18502193 L7.36692883,3.37946773 L7.36692883,6.81467358 L10.076181,6.81467358 L10.2705296,6.81467358 L10.2705296,7.00913883 Z M12.1601539,6.99552762 C12.1601539,5.61697497 11.6190112,4.32597154 10.6393933,3.34769528 C8.63253764,1.34336744 5.35197452,1.34061603 3.34153136,3.33944106 C3.33868273,3.34219247 3.33607716,3.34494388 3.33322852,3.34769528 C1.32397148,5.35459953 1.32372842,8.63641682 3.33322852,10.6433794 C5.34295224,12.6504489 8.62968901,12.6504489 10.6393933,10.6433794 C11.6190112,9.66506426 12.1601539,8.37408027 12.1601539,6.99552762 Z"></path></svg></span>Created</th><td><time>@Mar 5, 2021 5:03 PM</time></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Property</th><td></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><h1 id="5f1215c6-0bb8-4dbb-8e55-d30893f343ea" class="">Introduction</h1><p id="31d24c0d-44ab-41fd-890e-18da909795e6" class="">This report introduces the analysis and process of making plane/glider through analysis of varies designs with its pros and cons. I have started to try to make the design presented in the <a href="https://classroom.google.com/u/1/w/MTkxNzMwMDA5Nzgz/t/all">project file</a> (the sky hawk) but it needed to be printed on balsa wood or card stock to be designed well and be able to fly well. Secondly,  I looked on the second design in the <a href="https://classroom.google.com/u/1/w/MTkxNzMwMDA5Nzgz/t/all">project file</a></p><div id="d9f95e58-6b16-47d9-8131-b73e62e5e7f2" class="column-list"><div id="b7b2940a-02ed-47e2-a603-aca438810302" style="width:75%" class="column"><p id="4c7e5b2f-51fb-4b4f-804e-77b42d7dd03a" class="">that was the world record paper plane but couldn&#x27;t make it at first but made it then. The design process started with trying to make many designs of varies shapes from DIY (Do It Yourself) projects through Search or YouTube or DIY websites such as <em><span style="border-bottom:0.05em solid"><a href="https://www.instructables.com/">Instructables</a></span></em><em> which </em>has many DIY projects in many fields so it was great resource. After I made many design and made the test in 28/2 Saturday but the </p></div><div id="fd241307-b2b1-4e01-aa16-481ce6a307f8" style="width:24.999999999999996%" class="column"><p id="7e3d1444-b5bf-4b91-80e2-e874bc119340" class="block-color-red_background"><strong><em>I have made around +</em></strong><mark class="highlight-orange_background"><span style="border-bottom:0.05em solid"><strong><em>22</em></strong></span></mark><span style="border-bottom:0.05em solid"><strong><em> prototypes</em></strong></span><strong><em> of gliders from different designs to reach to the final design.</em></strong></p></div></div><p id="a8de048c-2ec1-46aa-b113-bc683d28b1fc" class=""> design showed good fly in the room and bad fly in the test in front of the doctor and the doctor commented that it should have vertical stabilizer and then had idea to add it but then i decided to make another one with a similar design but with more fold to make the vertical stabilizer and I will present it at 6/3 Saturday test.</p><h1 id="77709755-c683-4d2e-aafa-67065253f02d" class="">Methodology</h1><p id="fe3407d2-aaac-45e6-b75c-5a66556388ec" class="">The first step of making the glider was choosing the shape of it. I used <em><span style="border-bottom:0.05em solid"><a href="https://www.instructables.com/">Instructables</a></span></em><em><span style="border-bottom:0.05em solid"> </span></em><em> website to start choosing my best design of the glider as of doctor suggestion to check online DIYs projects</em>. In the following there is almost all the design shapes that I have made prototypes from them</p><h2 id="22e1c124-4182-49ce-84b6-2c1da40e287a" class="">Initial Designs</h2><div id="4ab0a8ea-785b-41ef-ae47-19a39debe017" class="column-list"><div id="ead8b89d-1ffc-49f9-a6f4-fe22cd66c9e8" style="width:16.666666666666664%" class="column"><h3 id="e7a1ccea-db86-4696-b261-fe833cf44ecb" class=""><span style="border-bottom:0.05em solid"><strong><mark class="highlight-yellow"><a href="https://www.instructables.com/Long-Distance-Paper-Glider/">First Design</a></mark></strong></span><mark class="highlight-yellow"> </mark></h3><figure id="0c60c700-5f02-4847-91f5-f15bbb6c86d1" class="image"><a href="Glider%20Project%20Report%200c60c7005f02484791f5f15bbb6c86d1/Untitled.png"><img style="width:1024px" src="Glider%20Project%20Report%200c60c7005f02484791f5f15bbb6c86d1/Untitled.png"/></a></figure><hr id="eed7e1df-23ce-4b6e-aabd-13615cd5263a"/><h3 id="a130949b-dbc1-49c2-9327-749939f2b73d" class="block-color-yellow_background">number of made </h3><ul id="7408ec40-79f5-45f3-aacb-877ad0021fd9" class="block-color-yellow_background bulleted-list"><li><span style="border-bottom:0.05em solid"><strong>+3</strong></span> A4 size</li></ul><ul id="a8fece87-26a5-4895-835a-98e1b3f8698c" class="block-color-yellow_background bulleted-list"><li><span style="border-bottom:0.05em solid"><strong>1-2</strong></span> A3 size</li></ul><ul id="de650c0c-dbf7-4d15-93d1-0842cd6af16a" class="block-color-yellow_background bulleted-list"><li><span style="border-bottom:0.05em solid"><strong>1</strong></span> small card size</li></ul></div><div id="f5b00db8-e43f-4959-847a-ccb93d32fa8f" style="width:62.5%" class="column"><h3 id="a2a0b390-dccd-4b7d-b8ae-6b1f6416c30f" class="block-color-brown_background">Description</h3><p id="5aff41c1-2d9b-4b12-90e9-f48668ec6ced" class="block-color-brown_background">I started with this design as it was in there was one like it in the <a href="https://classroom.google.com/u/1/w/MTkxNzMwMDA5Nzgz/t/all">project file</a> and made <mark class="highlight-brown"><strong>more than 3 prototypes</strong></mark> from it from A4 papers and tested it in the home many times and then made it with A3 papers and tested it outdoors in the club, in the high speed wind <mark class="highlight-gray"><em>-with A3 design-</em></mark> stayed on the air for a period in the same position opposing the air then fell down.</p><hr id="121ad109-69c0-42e2-94f1-926f32ba180d"/><h3 id="aa7b09b9-8518-489f-8c57-50b5ae6e82eb" class="block-color-gray_background">References:</h3><figure id="7a60d0b6-b404-4fe7-a35b-3c358a3173a6"><a href="https://www.instructables.com/Long-Distance-Paper-Glider/" class="block-color-gray_background bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Long Distance Paper Glider</div><div class="bookmark-description">Learn how to build a long distance paper glider that will go further than any other airplane you&#x27;ve made. 8 People Made This Project! Pre-fold along the lines. White is primary side. Fold in two edges, flip and fold tip backward. Fold as directed, for any paper size. Fold parallel to fuselage.</div></div><div class="bookmark-href"><img src="https://www.instructables.com/assets/img/siteassets/favicon.ico" class="icon bookmark-icon"/>https://www.instructables.com/Long-Distance-Paper-Glider/</div></div><img src="https://content.instructables.com/ORIG/FL5/THX7/FCRT3JMK/FL5THX7FCRT3JMK.jpg?auto=webp&amp;frame=1" class="bookmark-image"/></a></figure></div><div id="a8f6ff8c-9fce-4035-a832-32067d8651a3" style="width:20.833333333333307%" class="column"><p id="2c1a733e-4f92-4bc8-a20f-525a776a39f0" class="block-color-blue_background"><mark class="highlight-teal">Pros</mark></p><ul id="a59427dd-c773-4a5d-9c16-1680f8add4e4" class="block-color-blue_background bulleted-list"><li>move <mark class="highlight-blue">to the target</mark></li></ul><ul id="62d4cbcc-ffe3-408c-bdc8-223ad7d199a4" class="block-color-blue_background bulleted-list"><li><mark class="highlight-blue">fast</mark> with no air</li></ul><ul id="44f1ad45-e6af-4ab1-8615-0a870cf0ceda" class="block-color-blue_background bulleted-list"><li><mark class="highlight-blue">steady</mark> with no air</li></ul><hr id="4d162114-22d5-4517-bc6d-815151f12758"/><p id="e02961d8-5955-4553-8d33-de03a84f9e26" class="block-color-pink_background"><mark class="highlight-red"><strong>Cons</strong></mark></p><ul id="16da9b50-5c8a-4bd6-8680-43251e049933" class="block-color-pink_background bulleted-list"><li>generates <mark class="highlight-pink"><em>low lift</em></mark> than initial height</li></ul><ul id="eeb75202-39f9-43ef-9b18-5a351341a23f" class="block-color-pink_background bulleted-list"><li>with air have high <mark class="highlight-pink"><em>instability</em></mark></li></ul></div></div><hr id="cc89a53d-d3ff-424c-9230-832ea7ddd98d"/><div id="1d3cb536-e3c8-4c55-9ce8-ef730bff3667" class="column-list"><div id="37a7dd30-3a6a-4fe6-a7fe-e2bd5b77f547" style="width:62.5%" class="column"><h3 id="d3f0a4ee-fa18-4239-85a6-8e567549cfa8" class="block-color-brown_background">Description</h3><p id="b7464a72-3d2e-4055-8763-1724eb617ef7" class="block-color-brown_background">I made this design secondly as I thought that it can glide will due to its flat design, I found it in instructables through different pages. It showed great stability in closed doors but with low lift, it was gliding better and must be thrown with low speed(power) and high height to give the best range. In outdoors with air it showed high lift when flies against the air but with low stability, when it flew with the air it showed low stability and rotated upside down(<mark class="highlight-brown"><em>because it has no vertical stabilizer</em></mark>) <mark class="highlight-gray">plus bad throwing power</mark>.  </p><hr id="6b37fd3f-363d-4967-a072-35c928c4f161"/><h3 id="c5d15053-0b27-449e-a9b7-5d85ea964a3c" class="block-color-gray_background">References:</h3><figure id="9aea7ee0-03df-47d0-94d8-7335a4db4e69"><a href="https://www.instructables.com/DIY-Ultimate-Paper-Glider/" class="block-color-gray_background bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">DIY Ultimate Paper Glider</div><div class="bookmark-description">DIY Ultimate Paper Glider: Hi there! Welcome to my Instructable.Today I will be showing you how to create a simple, yet very entertaining paper glider! This project is great for kids or your inner-kid!Let&#x27;s begin.Materials:- Sheet of printer paper (This is all it takes).- You...</div></div><div class="bookmark-href"><img src="https://www.instructables.com/assets/img/siteassets/favicon.ico" class="icon bookmark-icon"/>https://www.instructables.com/DIY-Ultimate-Paper-Glider/</div></div><img src="https://content.instructables.com/ORIG/FCN/SUUM/IQCKFB34/FCNSUUMIQCKFB34.jpg?auto=webp&amp;frame=1" class="bookmark-image"/></a></figure><figure id="adaa776f-425a-4e3b-b45f-0b773a062ec1"><a href="https://www.instructables.com/Paper_Airplane_Walkalong_Glider/" class="block-color-gray_background bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Paper Airplane Walkalong Glider</div><div class="bookmark-description">Paper Airplane Walkalong Glider: What&#x27;s a walkalong glider? Here&#x27;s a video of a completed paper airplane walkalong glider on a 42 second &quot;cross country&quot; soaring flight: This paper airplane design was fabricated from 100% reused materials, from the 8 1/2 X 11 sheet of...</div></div><div class="bookmark-href"><img src="https://www.instructables.com/assets/img/siteassets/favicon.ico" class="icon bookmark-icon"/>https://www.instructables.com/Paper_Airplane_Walkalong_Glider/</div></div><img src="https://content.instructables.com/ORIG/FD3/HU6I/FRXUSN6R/FD3HU6IFRXUSN6R.jpg?auto=webp&amp;frame=1" class="bookmark-image"/></a></figure></div><div id="2d103b32-8ccb-4c7e-957a-79a1ae2130a3" style="width:20.833333333333332%" class="column"><p id="20ee2b5e-3eaf-4502-ba43-139c23e4020d" class="block-color-blue_background"><mark class="highlight-teal">Pros</mark></p><ul id="ec347bcc-fbeb-4cd2-8f2a-bffcee5c9680" class="block-color-blue_background bulleted-list"><li><mark class="highlight-blue">Glide smoothly</mark> with no air</li></ul><ul id="71dfc55b-0d0a-48fc-a294-2758d9c7fa7c" class="block-color-blue_background bulleted-list"><li><mark class="highlight-blue">Great stability</mark> with no air</li></ul><ul id="36b8d90e-7726-4116-9c7c-57ae611c1791" class="block-color-blue_background bulleted-list"><li><mark class="highlight-blue">High gliding ratio</mark> (range respect height) without air</li></ul><ul id="52740a2a-4fc1-4582-aa26-f99df63c7238" class="block-color-blue_background bulleted-list"><li>H<mark class="highlight-blue">igh</mark> <mark class="highlight-blue">lift generation</mark> against air</li></ul><hr id="0253b610-777d-4022-be4f-4dcd7985f88b"/><p id="3bbe430f-ad9d-4941-b975-a3eed4895e5f" class="block-color-pink_background"><mark class="highlight-red"><strong>Cons</strong></mark></p><ul id="920e6cf4-b3e2-417b-993f-1e8848baa36a" class="block-color-pink_background bulleted-list"><li><mark class="highlight-pink">Instable</mark> with speed wind</li></ul><ul id="d9277745-7740-419c-9b8c-d6344aaefb68" class="block-color-pink_background bulleted-list"><li><mark class="highlight-pink">low lift</mark> the initial height with no air</li></ul></div><div id="3f72a82e-b085-4d60-9c6d-3db473b101f0" style="width:16.666666666666693%" class="column"><h3 id="c642459c-ac9d-4faf-b69f-80ea685cb6ff" class=""><mark class="highlight-orange"><span style="border-bottom:0.05em solid"><strong>Second Design</strong></span></mark></h3><p id="b96fff63-1c5a-47ab-991c-d1300324218f" class="block-color-purple_background"><strong>This design was presented in the 28/2 test</strong></p><figure id="a8889538-b890-4f0e-86c4-7c2a308a607f" class="image"><a href="https://content.instructables.com/ORIG/FD3/HU6I/FRXUSN6R/FD3HU6IFRXUSN6R.jpg?auto=webp&amp;frame=1&amp;fit=bounds&amp;md=b182f595cd382efd9b7c245643598359"><img src="https://content.instructables.com/ORIG/FD3/HU6I/FRXUSN6R/FD3HU6IFRXUSN6R.jpg?auto=webp&amp;frame=1&amp;fit=bounds&amp;md=b182f595cd382efd9b7c245643598359"/></a></figure><hr id="23eb4186-edc6-4c56-9705-b0d437ea8ae7"/><h3 id="9411854e-5471-432d-9430-446a10c7c251" class="block-color-orange_background">number of made </h3><ul id="729fe1c7-ec61-43f9-986f-15c2f0a146a7" class="block-color-orange_background bulleted-list"><li><span style="border-bottom:0.05em solid"><strong>+4</strong></span> A4 size</li></ul><ul id="cf3b6a9b-f30e-4228-b0ea-c3186f4999cf" class="block-color-orange_background bulleted-list"><li><span style="border-bottom:0.05em solid"><strong>2</strong></span> A3 size</li></ul><ul id="d1771003-6981-4437-8ba6-47923d56abfd" class="block-color-orange_background bulleted-list"><li><span style="border-bottom:0.05em solid"><strong>2</strong></span> small card size (didn&#x27;t fly)</li></ul></div></div><hr id="e789950c-9c7b-43c5-be4e-580435f58647"/><div id="0e03632e-9731-40b5-b860-1459408c6bd0" class="column-list"><div id="7ade36c9-0427-49d5-a6c5-ebfb80d8562d" style="width:62.5%" class="column"><h3 id="c74f8715-ec9e-46d6-8053-34bfed8713c7" class="block-color-brown_background">Description</h3><p id="5baaec90-5a94-40ec-a262-d3fa21db81f5" class="block-color-brown_background">I made this design after the previous designs, it inspired me as it was shown in the project file as the world record paper airplane but it didn&#x27;t work will with me - maybe due errors in making it or throwing it-, it was making a great lift indoors without wind but with very high instability and low range(usually rotates and returns to me). When I gave it high power in throwing it showed good fly and lift with a good stability (it needed high initial speed to show this motion so I could not test it a lot)</p><hr id="13ccbd30-b839-43bc-a9f1-74278458689c"/><h3 id="855284aa-ab33-466f-a122-9143c2254e0a" class="block-color-gray_background">References:</h3><figure id="d5f0fa34-99d0-4215-88db-ba7b51dfb73b"><a href="https://www.instructables.com/Easy-Paper-Glider/" class="block-color-gray_background bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Easy Paper Glider</div><div class="bookmark-description">Easy Paper Glider: Don&#x27;t you hate it when you spend thirty minutes making an incredibly complex paper glider just to throw it and have it crash to the ground? This Instructable will teach you how to make a paper airplane that is easy and is guaranteed to fly.</div></div><div class="bookmark-href"><img src="https://www.instructables.com/assets/img/siteassets/favicon.ico" class="icon bookmark-icon"/>https://www.instructables.com/Easy-Paper-Glider/</div></div><img src="https://content.instructables.com/ORIG/FEC/OH58/IPFPCZXX/FECOH58IPFPCZXX.jpg?auto=webp&amp;frame=1&amp;width=2100" class="bookmark-image"/></a></figure></div><div id="10c7f6fb-f355-4a26-8f8b-343c3619ead8" style="width:20.833333333333332%" class="column"><h3 id="1f752469-6b1e-4310-ad5e-ba0a831954c6" class=""><span style="border-bottom:0.05em solid"><strong><mark class="highlight-yellow">Third Design</mark></strong></span></h3><figure id="aed43ede-9f4c-4feb-bdcb-293745d6b838" class="image"><a href="Glider%20Project%20Report%200c60c7005f02484791f5f15bbb6c86d1/Untitled%201.png"><img style="width:288px" src="Glider%20Project%20Report%200c60c7005f02484791f5f15bbb6c86d1/Untitled%201.png"/></a></figure><hr id="050ab983-5d75-44dd-9bad-6eeceba0e0fd"/><h3 id="90557067-6d57-4df6-9719-7e1b6165f180" class="block-color-yellow_background">number of made </h3><ul id="9366c271-c35f-45f4-9090-27502dd22295" class="block-color-yellow_background bulleted-list"><li><span style="border-bottom:0.05em solid"><strong>2</strong></span> A4 size</li></ul></div><div id="1947c545-d9f2-4a35-8caa-b3d9268a0e97" style="width:16.666666666666703%" class="column"><p id="fd9c9b1e-32c4-42b4-928a-6d9965da30d5" class="block-color-blue_background"><mark class="highlight-teal">Pros</mark></p><ul id="d0295f76-66a2-45ed-95b4-fd4f3a955720" class="block-color-blue_background bulleted-list"><li><mark class="highlight-blue">High lift</mark> generation when throwed </li></ul><hr id="c6f57b57-a188-49d7-b749-4bc8f2f0021e"/><p id="dd70ba19-769d-4e22-81cc-28b296c2fa19" class="block-color-pink_background"><mark class="highlight-red"><strong>Cons</strong></mark></p><ul id="83047178-add6-48b9-8e03-88945dcc8510" class="block-color-pink_background bulleted-list"><li>Needs high <mark class="highlight-pink">power</mark></li></ul><ul id="df376259-47ec-46f3-a9c0-c2db1a62b222" class="block-color-pink_background bulleted-list"><li>high <mark class="highlight-pink">instablity</mark><mark class="highlight-red"> </mark>without wind</li></ul><ul id="7056c67e-1eea-4bd8-8bf4-355ae8a75a57" class="block-color-pink_background bulleted-list"><li>very <mark class="highlight-pink">low range</mark></li></ul></div></div><hr id="110d404c-4ed3-4e01-b805-2fce2bfd89d6"/><hr id="c081391d-0ad3-44c5-b429-dec2a9ee63f2"/><h2 id="4a11ae8f-54d3-4726-843f-b5aada281950" class="">Other Designs</h2><div id="509bc58c-01d9-47e7-9578-ce2e1d9db52a" class="column-list"><div id="477e27ae-0a31-420a-bb28-d79ea11bd6db" style="width:33.33333333333334%" class="column"><p id="7a7f92f8-d12e-42c7-8eff-fb7375e6e2ef" class="block-color-gray"><strong><span style="border-bottom:0.05em solid">4th design</span></strong></p><figure id="ecce3a81-8777-4a11-9d0e-673d075b673a" class="image"><a href="Glider%20Project%20Report%200c60c7005f02484791f5f15bbb6c86d1/Untitled%202.png"><img style="width:720px" src="Glider%20Project%20Report%200c60c7005f02484791f5f15bbb6c86d1/Untitled%202.png"/></a></figure><h3 id="1a84c674-338f-45bd-b7c6-41d9d39527ab" class="block-color-brown_background">Description</h3><p id="9e69e0bd-71d0-415b-ab19-3e55e53cf557" class="block-color-brown_background">I have made 1 prototype A4 and showed good flying indoors.(not tested with wind) and it was similar to the second design without the wing tip</p><h3 id="ee87eac6-8ef2-48f2-9b07-1f5fbeccfc21" class="block-color-gray_background">References:</h3><figure id="5b50b92d-7a68-43bf-958a-d3040b13671e"><a href="https://www.instructables.com/paper-plane-6/" class="block-color-gray_background bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Paper Glider</div><div class="bookmark-description">It&#x27;s as easy as 3 steps... Use a standard A-4 sheet paper Add Tip Ask Question Download Be the First to Share Fold the paper into equal half till the crease is visible Add Tip Ask Question Download bend the sheet of paper till wings are visible Add Tip Ask Question Download fold the sheet of paper till wings are visible...</div></div><div class="bookmark-href"><img src="https://www.instructables.com/assets/img/siteassets/favicon.ico" class="icon bookmark-icon"/>https://www.instructables.com/paper-plane-6/</div></div><img src="https://content.instructables.com/ORIG/FSF/SRBX/I3VI57SV/FSFSRBXI3VI57SV.jpg?auto=webp&amp;frame=1&amp;width=2100" class="bookmark-image"/></a></figure></div><div id="129f3db2-44d4-4902-8435-e2f3391b67f3" style="width:33.33333333333334%" class="column"><p id="20917079-41ef-457e-9658-6b6cfd37e39d" class="block-color-gray"><span style="border-bottom:0.05em solid"><strong>5th Design</strong></span></p><h3 id="4e3e75a3-122f-43e9-93f7-2ac1fc45083e" class="block-color-brown_background">Description</h3><p id="8f96aac5-7eb5-4a97-ae9d-ad4e25ff9cdf" class="block-color-brown_background">I have made 1 prototype A4 and showed great flying indoors and good speed as well as good stability.(not tested with wind) but it had some effort in making</p><figure id="4f5a702f-6a05-4621-bd08-5c4c3f6c8b2e" class="image"><a href="Glider%20Project%20Report%200c60c7005f02484791f5f15bbb6c86d1/Untitled%203.png"><img style="width:933px" src="Glider%20Project%20Report%200c60c7005f02484791f5f15bbb6c86d1/Untitled%203.png"/></a></figure><h3 id="df0cb9ff-7446-4e8f-8609-d772e9c26f77" class="block-color-gray_background">References:</h3><figure id="8789a7b8-5593-4acc-9a2f-c427a746a9c0"><a href="https://www.instructables.com/Flapping-Paper-Plane/" class="block-color-gray_background bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Flapping Paper Plane</div><div class="bookmark-description">Flapping Paper Plane: This flapping paper plane folding method I am learning from a college student over ten years ago.It happen at a Physics class, a paper plane competition. Tens of paper plane throw out altogether, one of them not fly too far but draw all students and...</div></div><div class="bookmark-href"><img src="https://www.instructables.com/assets/img/siteassets/favicon.ico" class="icon bookmark-icon"/>https://www.instructables.com/Flapping-Paper-Plane/</div></div><img src="https://content.instructables.com/ORIG/F8X/KIYD/IH90O3VG/F8XKIYDIH90O3VG.jpg?auto=webp&amp;frame=1" class="bookmark-image"/></a></figure><p id="dbd1789b-a0d9-4dfe-8821-e0190398e13e" class="">
+</p></div><div id="3eda67a7-a2f6-48b5-9b4d-7a8939e18f9d" style="width:33.33333333333333%" class="column"><p id="25a9e4f8-afd2-4343-b9b0-3d70b1cbe8f2" class="block-color-gray"><span style="border-bottom:0.05em solid"><strong>6th Design</strong></span></p><figure id="b4badda0-d200-4bf8-828c-4049aa27a367" class="image"><a href="Glider%20Project%20Report%200c60c7005f02484791f5f15bbb6c86d1/Untitled%204.png"><img style="width:400px" src="Glider%20Project%20Report%200c60c7005f02484791f5f15bbb6c86d1/Untitled%204.png"/></a></figure><h3 id="113a61c5-d7bb-44b6-9645-0b87543d9681" class="block-color-brown_background">Description</h3><p id="a9e0a9b3-8a15-4c0b-9795-3cbf29bbd1dc" class="block-color-brown_background">I have tried to make one prototype from this design with A4 size paper but i failed as it have many tiny folds that I made them wrong and its vertical stabilizer was hard to be folded as shown in the image.</p><h3 id="5a97eb1c-dec6-45a0-a976-25b05a0ab01f" class="block-color-gray_background">References:</h3><figure id="f4048812-11bc-49d6-a769-26f1dfaabddb"><a href="https://www.instructables.com/How-to-Fold-an-Origami-F-16-Plane/" class="block-color-gray_background bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">How to Fold an Origami F-16 Plane</div><div class="bookmark-description">How to Fold an Origami F-16 Plane: In this instructable, I will teach you how to fold the plain awesome origami F-16! This model is not nearly as hard to fold as it looks, so don&#x27;t be deterred by its complex appearance. Despite the sad fact that this particular plane doesn&#x27;t fly too ...</div></div><div class="bookmark-href"><img src="https://www.instructables.com/assets/img/siteassets/favicon.ico" class="icon bookmark-icon"/>https://www.instructables.com/How-to-Fold-an-Origami-F-16-Plane/</div></div><img src="https://content.instructables.com/ORIG/FQ1/093L/IJAEI4D3/FQ1093LIJAEI4D3.jpg?auto=webp&amp;frame=1" class="bookmark-image"/></a></figure></div></div><p id="dad7335d-058d-4612-812d-e5cdf1984971" class="">
+</p></div></article></body></html>
